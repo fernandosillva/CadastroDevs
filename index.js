@@ -17,41 +17,38 @@ button.addEventListener("click", function (ev) {
 
   const tech = document.createElement("input");
   tech.name = "Tecnologia";
-  tech.type = "text";
+  tech.type = "input";
 
   const time = document.createElement("label");
   time.innerText = " | Tempo de Experiencia:";
 
   const input1 = document.createElement("input");
-  input1.name = "check";
+  input1.name = "check1";
   input1.id = "check";
   input1.type = "radio";
   input1.value = "0-2 anos";
 
   const radio1 = document.createElement("label");
-  radio1.name = "check";
   radio1.id = "check";
   radio1.innerText = "0 - 2 anos";
 
   const input2 = document.createElement("input");
-  input2.name = "check";
+  input2.name = "check2";
   input2.id = "check";
   input2.type = "radio";
   input2.value = "3-5 anos";
 
   const radio2 = document.createElement("label");
-  radio2.name = "check";
   radio2.id = "check";
   radio2.innerText = "3 - 5 anos";
 
   const input3 = document.createElement("input");
-  input3.name = "check";
+  input3.name = "check3";
   input3.id = "check";
   input3.type = "radio";
   input3.value = "10 anos";
 
   const radio3 = document.createElement("label");
-  radio3.name = "check";
   radio3.id = "check";
   radio3.innerText = "10 anos - ";
 
@@ -73,9 +70,8 @@ button.addEventListener("click", function (ev) {
   form.appendChild(input3);
   form.appendChild(radio3);
   form.appendChild(buttonExcluir);
+  form.appendChild(hr);
   section.append(form);
-
-  console.log(form);
 });
 
 const buttonC = document.getElementById("cadastrarDev");
@@ -87,10 +83,25 @@ buttonC.addEventListener("click", function (ev) {
 
   const form = document.getElementById("section");
 
-  Dev.nome = document.querySelector("input[name='Tecnologia']").value;
-  Dev.check = document.querySelector("input[type='radio']:checked").value;
+  Dev.name = document.querySelector("input[name='name']").value;
 
-  Devs.push(Dev);
+  let tecnologia = [];
+  let tempo = [];
+  let experiencia = [];
 
-  console.log(Devs);
+  document
+    .querySelectorAll("input[name='Tecnologia']")
+    .forEach(function (item) {
+      tecnologia.push(item.value);
+    });
+  document.querySelectorAll('input[type="radio"]:checked').forEach((item) => {
+    tempo.push(item.value);
+  });
+
+  for (let i = 0; i < tecnologia.length; i++) {
+    for (let j = i; j < tempo.length; j++) {
+      const element = tecnologia[i] + " - " + tempo[j];
+      console.log(element);
+    }
+  }
 });
