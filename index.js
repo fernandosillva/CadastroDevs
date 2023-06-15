@@ -1,5 +1,7 @@
 const Devs = [];
+let number = 0;
 
+///-----------------Criar--------------------------///
 const button = document.getElementById("addTech");
 
 button.addEventListener("click", function (ev) {
@@ -7,7 +9,11 @@ button.addEventListener("click", function (ev) {
 
   const section = document.getElementById("section");
 
+  number = number + 1;
+
   const form = document.createElement("form");
+  form.id = "formulario" + number;
+  form.name = "formulario";
 
   const h3 = document.createElement("h3");
   h3.innerText = "Adicionar Experiencia";
@@ -23,7 +29,6 @@ button.addEventListener("click", function (ev) {
   time.innerText = " | Tempo de Experiencia:";
 
   const input1 = document.createElement("input");
-  input1.name = "check1";
   input1.id = "check";
   input1.type = "radio";
   input1.value = "0-2 anos";
@@ -33,7 +38,6 @@ button.addEventListener("click", function (ev) {
   radio1.innerText = "0 - 2 anos";
 
   const input2 = document.createElement("input");
-  input2.name = "check2";
   input2.id = "check";
   input2.type = "radio";
   input2.value = "3-5 anos";
@@ -43,7 +47,6 @@ button.addEventListener("click", function (ev) {
   radio2.innerText = "3 - 5 anos";
 
   const input3 = document.createElement("input");
-  input3.name = "check3";
   input3.id = "check";
   input3.type = "radio";
   input3.value = "10 anos";
@@ -54,7 +57,7 @@ button.addEventListener("click", function (ev) {
 
   const buttonExcluir = document.createElement("button");
   buttonExcluir.innerText = "Excluir";
-  buttonExcluir.id = "excluir";
+  buttonExcluir.id = "excluir" + number;
   buttonExcluir.name = "excluir";
 
   const hr = document.createElement("hr");
@@ -72,22 +75,33 @@ button.addEventListener("click", function (ev) {
   form.appendChild(buttonExcluir);
   form.appendChild(hr);
   section.append(form);
-});
 
+  //-----------------Excluir--------------------------///
+
+  const botaoExcluir = document.getElementById("excluir" + number);
+
+  botaoExcluir.addEventListener("click", function (ev) {
+    ev.preventDefault();
+
+    const formExcluir = document.getElementById("formulario" + number);
+    console.log(formExcluir);
+    formExcluir.remove();
+  });
+});
+///-----------------Cadastrar--------------------------///
 const buttonC = document.getElementById("cadastrarDev");
 
 buttonC.addEventListener("click", function (ev) {
   ev.preventDefault();
 
   const Dev = {};
+  let tecnologia = [];
+  let tempo = [];
+  let experiencia = [];
 
   const form = document.getElementById("section");
 
   Dev.name = document.querySelector("input[name='name']").value;
-
-  let tecnologia = [];
-  let tempo = [];
-  let experiencia = [];
 
   document
     .querySelectorAll("input[name='Tecnologia']")
@@ -98,10 +112,15 @@ buttonC.addEventListener("click", function (ev) {
     tempo.push(item.value);
   });
 
-  for (let i = 0; i < tecnologia.length; i++) {
-    for (let j = i; j < tempo.length; j++) {
-      const element = tecnologia[i] + " - " + tempo[j];
-      console.log(element);
-    }
+  for (let i in tecnologia) {
+    experiencia.push(tecnologia[i] + " - " + tempo[i]);
   }
+
+  Dev.experiencia = "";
+  experiencia.forEach((item) => {
+    Dev.experiencia += item + " - ";
+  });
+
+  Devs.push(Dev);
+  console.log(Devs);
 });
