@@ -78,6 +78,10 @@ button.addEventListener("click", function (ev) {
   form.appendChild(buttonExcluir);
   form.appendChild(hr);
   section.append(form);
+
+  
+
+
 });
 ///-----------------Botao Cadastrar--------------------------///
 const buttonC = document.getElementById("cadastrarDev");
@@ -124,11 +128,6 @@ buttonC.addEventListener("click", function (ev) {
 });
 
 //-----------------Botao Excluir--------------------------///
+const botaoExcluir = document.getElementsByName("excluir1");
 
-const botaoExcluir = document.getElementById("excluir1");
-
-console.log(botaoExcluir);
-
-botaoExcluir.addEventListener("click", function (ev) {
-  ev.preventDefault();
-});
+console.log(botaoExcluir)
